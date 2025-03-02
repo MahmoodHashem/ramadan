@@ -20,11 +20,6 @@
 
 
 
-  .pattern-geometric {
-    background-image: url("/pattern.png");
-    background-size: 200px 200px;
-    background-repeat: no-repeat;
-  }
   
 
 
@@ -33,7 +28,7 @@
   --foreground: var(--primary-dark);
 
   --primary-dark: oklch(0.35 0.12 240); /* #1D4E89 */
-  --primary-gold: oklch(0.75 0.1 80); /* #C6A969 */
+  --primary-gold: oklch(0.79 0.14 84.04); /* #D4AF37 */
   --primary-cream: oklch(0.97 0.02 80); /* #F8F0E5 */
 
   /* Accent colors */
@@ -183,7 +178,4 @@
     direction: rtl;
   }
 
-  article {
-    font-family: var(--font-article);
-  }
 }

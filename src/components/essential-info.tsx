@@ -8,27 +8,24 @@ const EssentialInfo = () => {
         {/* Content wrapper */}
         <div className="relative max-w-4xl mx-auto space-y-12 md:space-y-24 px-4 md:px-0">
           {/* Introduction */}
-          <div className="grid grid-cols-1 lg:grid-cols-12 gap-8">
-            <div className="lg:col-span-8">
-              <h2 className="text-3xl md:text-4xl font-bold mb-6 md:mb-8 border-r-4 border-primary pr-6">
+          <article className="">
+              <h2 className="text-xl md:text-4xl font-bold mb-6 md:mb-8 border-r-4 border-primary pr-6">
                 ماه مبارک رمضان چیست؟
               </h2>
               <div className="prose prose-lg prose-primary max-w-none text-right space-y-6">
-                <p className="text-base md:text-lg leading-relaxed">
+                <p className="text-sm text-justify  md:text-lg leading-relaxed">
                   رمضان نهمین ماه از تقویم قمری و ماه نزول قرآن است. این ماه مبارک، فرصتی ارزشمند برای مسلمانان جهت تزکیه نفس، عبادت و نزدیکی به خداوند متعال است.
                 </p>
-                <p className="text-base md:text-lg leading-relaxed">
+                <p className="text-sm text-justify md:text-lg leading-relaxed">
                   در این ماه، مسلمانان با روزه‌داری، تلاوت قرآن و انجام اعمال عبادی، به تقویت ایمان و تقوای خود می‌پردازند.
                 </p>
               </div>
-            </div>
-            <div className="lg:col-span-4">
-              <div className="aspect-square bg-primary/10 rounded-lg" />
-            </div>
-          </div>
+          
+
+          </article>
   
           {/* Benefits */}
-          <div className="bg-accent/5 p-6 md:p-12 rounded-2xl">
+          <div className=" p-6 md:p-12 rounded-2xl">
             <h2 className="text-2xl md:text-3xl font-bold mb-6 md:mb-8 text-center">
               برکات و فضیلت‌های ماه رمضان
             </h2>
@@ -39,7 +36,7 @@ const EssentialInfo = () => {
                 "افزایش صبر و تقوا",
                 "تقویت اراده و خودسازی"
               ].map((benefit, index) => (
-                <div key={index} className="flex items-center gap-4 bg-background/50 p-4 md:p-6 rounded-lg">
+                <div key={index} className="flex items-center gap-4 bg-background p-4 md:p-6 rounded-lg">
                   <span className="w-2 md:w-3 h-2 md:h-3 rounded-full bg-primary shrink-0" />
                   <span className="text-base md:text-lg">{benefit}</span>
                 </div>

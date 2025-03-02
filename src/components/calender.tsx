@@ -19,7 +19,7 @@ const CalendarSection = () => {
   
           <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
             {/* Prayer Times */}
-            <div className="bg-card rounded-2xl p-6 space-y-6">
+            <div className=" rounded-2xl p-6 bg-card space-y-6">
               <h3 className="text-2xl font-semibold text-center">اوقات شرعی امروز</h3>
               <div className="space-y-4">
                 {prayerTimes.map((prayer, index) => (
@@ -32,7 +32,7 @@ const CalendarSection = () => {
             </div>
   
             {/* Countdown */}
-            <div className="bg-card/40 rounded-2xl p-6 space-y-6">
+            <div className="bg-card rounded-2xl p-6 space-y-6">
               <h3 className="text-2xl font-semibold text-center">تا افطار امروز</h3>
               <div className="grid grid-cols-3 gap-4 text-center">
                 {["ساعت", "دقیقه", "ثانیه"].map((unit, index) => (
