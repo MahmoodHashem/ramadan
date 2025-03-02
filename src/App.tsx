@@ -1,3 +1,4 @@
+import EssentialInfo from "./components/essential-info"
 import Header from "./components/header"
 import Hero from "./components/hero"
 import { ThemeProvider } from "./components/theme-provider"
@@ -10,6 +11,9 @@ function App() {
         <Header />
         <Hero />
        </header>
+       <section>
+        <EssentialInfo />
+       </section>
     </ThemeProvider>
   )
 }
