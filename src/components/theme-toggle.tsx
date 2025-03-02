@@ -7,7 +7,7 @@ export function ThemeToggle() {
 
 
   function  handleThemeChange() {
-    console.log(theme)
+
     setTheme(theme === "dark" ? "light" : "dark")
   }
 

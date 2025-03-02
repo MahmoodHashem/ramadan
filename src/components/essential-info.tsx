@@ -1,6 +1,6 @@
 const EssentialInfo = () => {
     return (
-      <section className="container mx-auto px-5 py-12 md:py-24 relative">
+      <section id="essential" className="container mx-auto px-5 py-12 md:py-24 relative">
         {/* Decorative background elements */}
         <div className="absolute inset-0 bg-gradient-to-b from-background via-accent/5 to-background" />
         <div className="absolute inset-y-0 right-0 w-1/4 bg-primary/5 hidden lg:block" />
@@ -9,7 +9,7 @@ const EssentialInfo = () => {
         <div className="relative max-w-4xl mx-auto space-y-12 md:space-y-24 px-4 md:px-0">
           {/* Introduction */}
           <article className="">
-              <h2 className="text-xl md:text-4xl font-bold mb-6 md:mb-8 border-r-4 border-primary pr-6">
+              <h2 className="text-xl md:text-2xl font-bold mb-6 md:mb-8 border-r-4 border-primary pr-6">
                 ماه مبارک رمضان چیست؟
               </h2>
               <div className="prose prose-lg prose-primary max-w-none text-right space-y-6">
@@ -20,12 +20,36 @@ const EssentialInfo = () => {
                   در این ماه، مسلمانان با روزه‌داری، تلاوت قرآن و انجام اعمال عبادی، به تقویت ایمان و تقوای خود می‌پردازند.
                 </p>
               </div>
-          
-
+          </article>
+          <article className="">
+              <h2 className="text-xl md:text-2xl font-bold mb-6 md:mb-8 border-r-4 border-primary pr-6">
+                فضایل ماه مبارک رمضان
+              </h2>
+              <div className="prose prose-lg prose-primary max-w-none text-right space-y-6">
+                <p className="text-sm text-justify  md:text-lg leading-relaxed">
+                  رمضان نهمین ماه از تقویم قمری و ماه نزول قرآن است. این ماه مبارک، فرصتی ارزشمند برای مسلمانان جهت تزکیه نفس، عبادت و نزدیکی به خداوند متعال است.
+                </p>
+                <p className="text-sm text-justify md:text-lg leading-relaxed">
+                  در این ماه، مسلمانان با روزه‌داری، تلاوت قرآن و انجام اعمال عبادی، به تقویت ایمان و تقوای خود می‌پردازند.
+                </p>
+              </div>
+          </article>
+          <article className="">
+              <h2 className="text-xl md:text-2xl font-bold mb-6 md:mb-8 border-r-4 border-primary pr-6">
+                احکام و شرایط روزه
+              </h2>
+              <div className="prose prose-lg prose-primary max-w-none text-right space-y-6">
+                <p className="text-sm text-justify  md:text-lg leading-relaxed">
+                  رمضان نهمین ماه از تقویم قمری و ماه نزول قرآن است. این ماه مبارک، فرصتی ارزشمند برای مسلمانان جهت تزکیه نفس، عبادت و نزدیکی به خداوند متعال است.
+                </p>
+                <p className="text-sm text-justify md:text-lg leading-relaxed">
+                  در این ماه، مسلمانان با روزه‌داری، تلاوت قرآن و انجام اعمال عبادی، به تقویت ایمان و تقوای خود می‌پردازند.
+                </p>
+              </div>
           </article>
   
           {/* Benefits */}
-          <div className=" py-6 md:py-12 rounded-2xl">
+          {/* <div className=" py-6 md:py-12 rounded-2xl">
             <h2 className="text-xl md:text-4xl font-bold mb-6 md:mb-8 text-center">
               برکات و فضیلت‌های ماه رمضان
             </h2>
@@ -44,7 +68,6 @@ const EssentialInfo = () => {
             </div>
           </div>
   
-          {/* Rules and Conditions */}
           <div className="space-y-8 md:space-y-12">
             <h2 className="text-xl md:text-4xl font-bold text-center">احکام و شرایط روزه</h2>
             <div className="grid grid-cols-1 md:grid-cols-2 gap-6 md:gap-12">
@@ -61,7 +84,7 @@ const EssentialInfo = () => {
                 </p>
               </div>
             </div>
-          </div>
+          </div> */}
         </div>
       </section>
     )

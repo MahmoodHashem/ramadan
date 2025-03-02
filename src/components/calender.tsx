@@ -1,4 +1,9 @@
 const CalendarSection = () => {
+
+  // const toPersianNumbers = (num: number) => {
+  //   return new Intl.NumberFormat('fa-IR').format(num)
+  // }
+
     const prayerTimes = [
       { name: "اذان صبح", time: "04:30" },
       { name: "طلوع آفتاب", time: "06:15" },
@@ -8,7 +13,7 @@ const CalendarSection = () => {
     ]
   
     return (
-      <section className="container mx-auto px-5 py-24 relative">
+      <section id="calendar" className="container mx-auto px-5 py-24 relative">
         <div className="absolute inset-0 bg-gradient-to-b from-background via-primary/5 to-background" />
         
         <div className="relative max-w-4xl mx-auto space-y-12">
@@ -25,7 +30,7 @@ const CalendarSection = () => {
                 {prayerTimes.map((prayer, index) => (
                   <div key={index} className="flex justify-between items-center p-3 bg-accent/10 rounded-lg">
                     <span className="text-base">{prayer.name}</span>
-                    <span className="text-base font-semibold ">{prayer.time}</span>
+                    <span className="text-base font-semibold "> {prayer.time}</span>
                   </div>
                 ))}
               </div>

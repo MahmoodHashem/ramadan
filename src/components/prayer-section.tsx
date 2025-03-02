@@ -149,14 +149,14 @@ const PrayersSection = () => {
                       </div>
 
                       <div className="flex justify-between items-center mt-6">
-                        <button className="flex items-center gap-2 text-sm text-primary hover:text-primary/80 transition-colors">
+                        <button className="flex items-center gap-2 text-sm text-card-foreground cursor-pointer hover:text-primary/80 transition-colors">
                           <Play className="w-4 h-4" />
                           پخش صوت
                         </button>
 
                         <button
                           onClick={() => handleCopy(dua.arabic, index)}
-                          className="p-2 rounded-full bg-primary/5 hover:bg-primary/10 transition-colors"
+                          className="p-2 rounded-full bg-primary/5 hover:bg-primary/10 transition-colors cursor-pointer"
                         >
                           {copiedId === index ? (
                             <Check className="w-4 h-4 text-green-600" />
@@ -206,14 +206,14 @@ const PrayersSection = () => {
                       </div>
 
                       <div className="flex justify-between items-center mt-6">
-                        <button className="flex items-center gap-2 text-sm text-primary hover:text-primary/80 transition-colors">
+                        <button className="flex items-center gap-2 text-sm text-card-foreground  cursor-pointer hover:text-primary/80 transition-colors">
                           <Play className="w-4 h-4" />
                           پخش صوت
                         </button>
 
                         <button
                           onClick={() => handleCopy(surah.arabic, index)}
-                          className="p-2 rounded-full bg-primary/5 hover:bg-primary/10 transition-colors"
+                          className="p-2 rounded-full bg-primary/5 hover:bg-primary/10 transition-colors cursor-pointer"
                         >
                           {copiedId === index ? (
                             <Check className="w-4 h-4 text-green-600" />

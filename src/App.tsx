@@ -7,14 +7,17 @@ import PrayersSection from "./components/prayer-section";
 import FaqSection from "./components/faq";
 import SourcesSection from "./components/sources-section";
 import Footer from "./components/footer";
+import EidCountdown from "./components/eid-countdown";
 
 function App() {
   return (
-    <ThemeProvider defaultTheme="system">
+    <ThemeProvider defaultTheme="dark">
+      <EidCountdown />
       <header className="w-full">
         <Header />
         <Hero />
       </header>
+      
       <EssentialInfo />
       <CalenderSection />
       <PrayersSection />

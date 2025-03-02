@@ -1,6 +1,15 @@
 import { Button } from "./ui/button";
 
 const Hero = () => {
+
+  const scrollToCalendar = () => {
+    document.querySelector('#calendar')?.scrollIntoView({ behavior: 'smooth' })
+  }
+
+  const scrollToInfo = () => {
+    document.querySelector('#faq')?.scrollIntoView({ behavior: 'smooth' })
+  }
+
   return (
     <section className="container mx-auto p-4 flex flex-col-reverse md:flex-row items-center  justify-between py-16 gap-8 mt-6 ">
       <div className="absolute inset-0 z-0 max-w-[200px]">
@@ -25,10 +34,12 @@ const Hero = () => {
         </p>
 
         <div className="flex justify-center md:justify-start items-center gap-4">
-          <Button size="lg" className="text-sm sm:text-lg">
+          <Button onClick={scrollToCalendar} size="lg" className="text-sm sm:text-lg">
             تقویم رمضان
           </Button>
-          <Button variant="outline" size="lg" className="text-sm sm:text-lg">
+          <Button
+            onClick={scrollToInfo}
+          variant="outline" size="lg" className="text-sm sm:text-lg">
             اطلاعات بیشتر
           </Button>
         </div>

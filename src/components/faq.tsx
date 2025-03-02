@@ -30,7 +30,7 @@ import {
     ]
   
     return (
-      <section className="container mx-auto px-5 py-24 relative">
+      <section id="faq" className="container mx-auto px-5 py-24 relative">
 
         <div className="relative max-w-3xl mx-auto space-y-8">
           <div className="text-center space-y-4">
