@@ -5,6 +5,7 @@ import Hero from "./components/hero"
 import { ThemeProvider } from "./components/theme-provider"
 import PrayersSection from "./components/prayer-section"
 import FaqSection from "./components/faq"
+import SourcesSection from "./components/sources-section"
 
 function App() {
   return (
@@ -18,6 +19,7 @@ function App() {
         <CalenderSection />
         <PrayersSection />
         <FaqSection />
+        <SourcesSection />
       
     </ThemeProvider>
   )
