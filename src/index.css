@@ -19,6 +19,15 @@
   }
 
 
+
+  .pattern-geometric {
+    background-image: url("/pattern.png");
+    background-size: 200px 200px;
+    background-repeat: no-repeat;
+  }
+  
+
+
 :root {
   --background: oklch(0.99 0 0);
   --foreground: var(--primary-dark);
@@ -171,6 +180,7 @@
   body {
     @apply bg-background text-foreground;
     font-family: var(--font-primary);
+    direction: rtl;
   }
 
   article {
