@@ -1,28 +1,28 @@
-import EssentialInfo from "./components/essential-info"
-import CalenderSection from "./components/calender"
-import Header from "./components/header"
-import Hero from "./components/hero"
-import { ThemeProvider } from "./components/theme-provider"
-import PrayersSection from "./components/prayer-section"
-import FaqSection from "./components/faq"
-import SourcesSection from "./components/sources-section"
+import EssentialInfo from "./components/essential-info";
+import CalenderSection from "./components/calender";
+import Header from "./components/header";
+import Hero from "./components/hero";
+import { ThemeProvider } from "./components/theme-provider";
+import PrayersSection from "./components/prayer-section";
+import FaqSection from "./components/faq";
+import SourcesSection from "./components/sources-section";
+import Footer from "./components/footer";
 
 function App() {
   return (
     <ThemeProvider defaultTheme="system">
-       
-       <header className="w-full" >
+      <header className="w-full">
         <Header />
         <Hero />
-       </header>
-        <EssentialInfo />
-        <CalenderSection />
-        <PrayersSection />
-        <FaqSection />
-        <SourcesSection />
-      
+      </header>
+      <EssentialInfo />
+      <CalenderSection />
+      <PrayersSection />
+      <FaqSection />
+      <SourcesSection />
+      <Footer />
     </ThemeProvider>
-  )
+  );
 }
 
-export default App
+export default App;
