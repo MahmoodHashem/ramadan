@@ -13,19 +13,19 @@ const CalendarSection = () => {
         
         <div className="relative max-w-4xl mx-auto space-y-12">
           <div className="text-center space-y-4">
-            <h2 className="text-3xl md:text-4xl font-bold">تقویم ماه مبارک رمضان</h2>
-            <p className="text-lg text-muted-foreground">اوقات شرعی به افق تهران</p>
+            <h2 className="text-xl md:text-4xl font-bold">تقویم ماه مبارک رمضان</h2>
+            <p className="text-lg text-muted-foreground">اوقات شرعی به افق هرات</p>
           </div>
   
           <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
             {/* Prayer Times */}
             <div className=" rounded-2xl p-6 bg-card space-y-6">
-              <h3 className="text-2xl font-semibold text-center">اوقات شرعی امروز</h3>
+              <h3 className="text-lg md:text-xl font-semibold text-center">اوقات شرعی امروز</h3>
               <div className="space-y-4">
                 {prayerTimes.map((prayer, index) => (
                   <div key={index} className="flex justify-between items-center p-3 bg-accent/10 rounded-lg">
-                    <span className="text-lg">{prayer.name}</span>
-                    <span className="text-lg font-semibold">{prayer.time}</span>
+                    <span className="text-base">{prayer.name}</span>
+                    <span className="text-base font-semibold ">{prayer.time}</span>
                   </div>
                 ))}
               </div>
@@ -33,7 +33,7 @@ const CalendarSection = () => {
   
             {/* Countdown */}
             <div className="bg-card rounded-2xl p-6 space-y-6">
-              <h3 className="text-2xl font-semibold text-center">تا افطار امروز</h3>
+              <h3 className="text-lg md:text-xl font-semibold text-center">تا افطار امروز</h3>
               <div className="grid grid-cols-3 gap-4 text-center">
                 {["ساعت", "دقیقه", "ثانیه"].map((unit, index) => (
                   <div key={index} className="bg-background rounded-lg p-4">

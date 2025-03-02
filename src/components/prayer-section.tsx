@@ -9,8 +9,6 @@ import {
   CarouselPrevious,
 } from "@/components/ui/carousel";
 
-import { Card, CardContent } from "@/components/ui/card";
-
 const PrayersSection = () => {
   const [copiedId, setCopiedId] = useState<number | null>(null);
   const [selectedPrayer, setSelectedPrayer] = useState<(typeof duas)[0] | null>(

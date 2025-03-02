@@ -25,8 +25,8 @@ const EssentialInfo = () => {
           </article>
   
           {/* Benefits */}
-          <div className=" p-6 md:p-12 rounded-2xl">
-            <h2 className="text-2xl md:text-3xl font-bold mb-6 md:mb-8 text-center">
+          <div className=" py-6 md:py-12 rounded-2xl">
+            <h2 className="text-xl md:text-4xl font-bold mb-6 md:mb-8 text-center">
               برکات و فضیلت‌های ماه رمضان
             </h2>
             <div className="grid grid-cols-1 md:grid-cols-2 gap-4 md:gap-8">
@@ -46,7 +46,7 @@ const EssentialInfo = () => {
   
           {/* Rules and Conditions */}
           <div className="space-y-8 md:space-y-12">
-            <h2 className="text-3xl md:text-4xl font-bold text-center">احکام و شرایط روزه</h2>
+            <h2 className="text-xl md:text-4xl font-bold text-center">احکام و شرایط روزه</h2>
             <div className="grid grid-cols-1 md:grid-cols-2 gap-6 md:gap-12">
               <div className="space-y-4 p-6 md:p-8 bg-primary/5 rounded-2xl">
                 <h3 className="text-xl md:text-2xl font-semibold">شرایط وجوب روزه</h3>

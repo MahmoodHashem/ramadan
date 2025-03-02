@@ -4,6 +4,7 @@ import Header from "./components/header"
 import Hero from "./components/hero"
 import { ThemeProvider } from "./components/theme-provider"
 import PrayersSection from "./components/prayer-section"
+import FaqSection from "./components/faq"
 
 function App() {
   return (
@@ -16,7 +17,7 @@ function App() {
         <EssentialInfo />
         <CalenderSection />
         <PrayersSection />
-      
+        <FaqSection />
       
     </ThemeProvider>
   )

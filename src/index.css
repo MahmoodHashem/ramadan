@@ -20,8 +20,14 @@
 
 
 
-  
+  @theme {
+    --font-neirizi: "Neirizi";
+  }
 
+
+ 
+  
+  
 
 :root {
   --background: oklch(0.99 0 0);
