@@ -70,31 +70,28 @@ const SourcesSection = () => {
                       [{ref.id}]
                     </span>
                     <span>
-
-                        {
-                            ref.url ? (
-                                <a
-                                    href={ref.url}
-                                    target="_blank"
-                                    rel="noopener noreferrer"
-                                    className="text-primary hover:underline mr-2"
-                                >
-                                    {ref.text}
-                                </a>
-                            ) : (
-                                <span className="text-muted-foreground">
-                                    {ref.text}
-                                </span>
-                            )
-                        }
-                        {ref.url && (
-                          <span className="text-sm">
-                            (تاریخ دسترسی: {ref.accessDate})
-                          </span>
-                        )}
+                      {"url" in ref ? (
+                        <a
+                          href={ref.url}
+                          target="_blank"
+                          rel="noopener noreferrer"
+                          className="text-primary hover:underline mr-2"
+                        >
+                          {ref.text}
+                        </a>
+                      ) : (
+                        <span className="text-muted-foreground">
+                          {ref.text}
+                        </span>
+                      )}
+                      {"url" in ref && (
+                        <span className="text-sm">
+                          (تاریخ دسترسی: {ref.accessDate})
+                        </span>
+                      )}
                     </span>
                   </li>
-                ))}
+                ))}{" "}
               </ul>
             </div>
           ))}
