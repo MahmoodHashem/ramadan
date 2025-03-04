@@ -1,5 +1,5 @@
 import { Play, Pause, Copy, Check } from "lucide-react";
-import { useState, useRef, useEffect } from "react";
+import { useState, useEffect } from "react";
 import { Dialog, DialogContent, DialogHeader, DialogTitle } from "./ui/dialog";
 import {
   Carousel,
@@ -45,14 +45,17 @@ const PrayersSection = () => {
 
     return () => {
       Object.values(duaElements).forEach((audio) => {
-        audio.pause();
-        audio.currentTime = 0;
+        if (audio instanceof HTMLAudioElement) {
+          audio.pause();
+          audio.currentTime = 0;
+        }
       });
       Object.values(surahElements).forEach((audio) => {
-        audio.pause();
-        audio.currentTime = 0;
-      });
-    };
+        if (audio instanceof HTMLAudioElement) {
+          audio.pause();
+          audio.currentTime = 0;
+        }
+      });    };
   }, []);
 
   const handleDuaPlay = (index: number) => {
@@ -313,9 +316,9 @@ const PrayersSection = () => {
                 variant={"ghost"}
                 className="w-full md:w-auto"
                 onClick={() => {
-                  if (selectedPrayer?.category === "surah") {
+                  if (selectedPrayer && selectedPrayer.category === "surah") {
                     handleSurahPlay(selectedPrayer.id);
-                  } else {
+                  } else if (selectedPrayer) {
                     handleDuaPlay(selectedPrayer.id);
                   }
                 }}
