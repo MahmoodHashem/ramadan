@@ -1,4 +1,4 @@
-import { Play, Pause, Copy, Check } from "lucide-react";
+import { Play, Pause, Copy, Check, CircleDashed } from "lucide-react";
 import { useState, useEffect } from "react";
 import { Dialog, DialogContent, DialogHeader, DialogTitle } from "./ui/dialog";
 import {
@@ -9,6 +9,9 @@ import {
   CarouselPrevious,
 } from "@/components/ui/carousel";
 import { Button } from "./ui/button";
+
+import surahs from "@/assets/data/surahs";
+import duas from "@/assets/data/duas";
 
 const PrayersSection = () => {
   const [copiedId, setCopiedId] = useState<number | null>(null);
@@ -24,6 +27,10 @@ const PrayersSection = () => {
   const [surahAudioElements, setSurahAudioElements] = useState<{
     [key: number]: HTMLAudioElement;
   }>({});
+
+  const toPersianNumbers = (num: number) => {
+    return new Intl.NumberFormat("fa-IR").format(num);
+  };
 
   useEffect(() => {
     // Initialize duas audio
@@ -55,7 +62,8 @@ const PrayersSection = () => {
           audio.pause();
           audio.currentTime = 0;
         }
-      });    };
+      });
+    };
   }, []);
 
   const handleDuaPlay = (index: number) => {
@@ -78,6 +86,8 @@ const PrayersSection = () => {
   const handleSurahPlay = (index: number) => {
     const audio = surahAudioElements[index];
 
+    console.log(index);
+
     if (playingSurahId === index) {
       audio.pause();
       setPlayingSurahId(null);
@@ -97,79 +107,7 @@ const PrayersSection = () => {
     setTimeout(() => setCopiedId(null), 2000);
   };
 
-  const duas = [
-    {
-      id: 0,
-      title: "دعای افطار",
-      arabic:
-        "اللَّهُمَّ لَكَ صُمْتُ وَ عَلَى رِزْقِكَ أَفْطَرْتُ وَ عَلَيْكَ تَوَكَّلْتُ، بِسْمِ اللهِ الرَّحْمنِ الرَّحِيمِ، يَا وَاسِعَ الْمَغْفِرَةِ اغْفِرْ لِي",
-      translation:
-        "خدایا برای تو روزه گرفتم و با روزی تو افطار کردم و بر تو توکل نمودم، به نام خداوند بخشنده مهربان، ای دارنده مغفرت گسترده مرا بیامرز",
-      category: "dua",
-      audio: "/audio/dua/dua-1.mp3",
-    },
-
-    {
-      id: 1,
-      title: "دعای افطار",
-      arabic:
-        "اللَّهُمَّ لَكَ صُمْتُ وَ عَلَى رِزْقِكَ أَفْطَرْتُ وَ عَلَيْكَ تَوَكَّلْتُ، بِسْمِ اللهِ الرَّحْمنِ الرَّحِيمِ، يَا وَاسِعَ الْمَغْفِرَةِ اغْفِرْ لِي",
-      translation:
-        "خدایا برای تو روزه گرفتم و با روزی تو افطار کردم و بر تو توکل نمودم، به نام خداوند بخشنده مهربان، ای دارنده مغفرت گسترده مرا بیامرز",
-      category: "dua",
-      audio: "/audio/dua/dua-2.mp3",
-    },
-    {
-      id: 2,
-      title: "دعای افطار",
-      arabic:
-        "اللَّهُمَّ لَكَ صُمْتُ وَ عَلَى رِزْقِكَ أَفْطَرْتُ وَ عَلَيْكَ تَوَكَّلْتُ، بِسْمِ اللهِ الرَّحْمنِ الرَّحِيمِ، يَا وَاسِعَ الْمَغْفِرَةِ اغْفِرْ لِي",
-      translation:
-        "خدایا برای تو روزه گرفتم و با روزی تو افطار کردم و بر تو توکل نمودم، به نام خداوند بخشنده مهربان، ای دارنده مغفرت گسترده مرا بیامرز",
-      category: "dua",
-      audio: "/audio/dua/dua-3.mp3",
-    },
-  ];
-
-  const surahs = [
-    {
-      id: 0,
-      title: "سوره قدر",
-      arabic:
-        "إِنَّا أَنْزَلْنَاهُ فِي لَيْلَةِ الْقَدْرِ وَمَا أَدْرَاكَ مَا لَيْلَةُ الْقَدْرِ لَيْلَةُ الْقَدْرِ خَيْرٌ مِنْ أَلْفِ شَهْرٍ تَنَزَّلُ الْمَلَائِكَةُ وَالرُّوحُ فِيهَا بِإِذْنِ رَبِّهِمْ مِنْ كُلِّ أَمْرٍ سَلَامٌ هِيَ حَتَّىٰ مَطْلَعِ الْفَجْرِ",
-      translation: "ما آن [قرآن] را در شب قدر نازل کردیم",
-      category: "surah",
-      audio: "/audio/surah/surah-1.mp3",
-    },
-
-    {
-      id: 1,
-      title: "سوره قدر",
-      arabic:
-        "إِنَّا أَنْزَلْنَاهُ فِي لَيْلَةِ الْقَدْرِ وَمَا أَدْرَاكَ مَا لَيْلَةُ الْقَدْرِ لَيْلَةُ الْقَدْرِ خَيْرٌ مِنْ أَلْفِ شَهْرٍ تَنَزَّلُ الْمَلَائِكَةُ وَالرُّوحُ فِيهَا بِإِذْنِ رَبِّهِمْ مِنْ كُلِّ أَمْرٍ سَلَامٌ هِيَ حَتَّىٰ مَطْلَعِ الْفَجْرِ",
-      translation: "ما آن [قرآن] را در شب قدر نازل کردیم",
-      category:"surah", 
-      audio: "/audio/surah/surah-2.mp3",
-    },
-    {
-      id: 2,
-      title: "سوره قدر",
-      arabic:
-        "إِنَّا أَنْزَلْنَاهُ فِي لَيْلَةِ الْقَدْرِ وَمَا أَدْرَاكَ مَا لَيْلَةُ الْقَدْرِ لَيْلَةُ الْقَدْرِ خَيْرٌ مِنْ أَلْفِ شَهْرٍ تَنَزَّلُ الْمَلَائِكَةُ وَالرُّوحُ فِيهَا بِإِذْنِ رَبِّهِمْ مِنْ كُلِّ أَمْرٍ سَلَامٌ هِيَ حَتَّىٰ مَطْلَعِ الْفَجْرِ",
-      translation: "ما آن [قرآن] را در شب قدر نازل کردیم",
-      category: "surah",
-      audio: "/audio/surah/surah-3.mp3",
-    },
-    {
-      id: 3,
-      title: "سوره قدر",
-      arabic:
-        "إِنَّا أَنْزَلْنَاهُ فِي لَيْلَةِ الْقَدْرِ وَمَا أَدْرَاكَ مَا لَيْلَةُ الْقَدْرِ لَيْلَةُ الْقَدْرِ خَيْرٌ مِنْ أَلْفِ شَهْرٍ تَنَزَّلُ الْمَلَائِكَةُ وَالرُّوحُ فِيهَا بِإِذْنِ رَبِّهِمْ مِنْ كُلِّ أَمْرٍ سَلَامٌ هِيَ حَتَّىٰ مَطْلَعِ الْفَجْرِ",
-      translation: "ما آن [قرآن] را در شب قدر نازل کردیم",
-      category: "surah",
-      audio: "/audio/surah/surah-4.mp3",
-    },
-  ];
+  // "اللَّهُمَّ لَكَ صُمْتُ وَ عَلَى رِزْقِكَ أَفْطَرْتُ وَ عَلَيْكَ تَوَكَّلْتُ، بِسْمِ اللهِ الرَّحْمنِ الرَّحِيمِ، يَا وَاسِعَ الْمَغْفِرَةِ اغْفِرْ لِي",
 
   return (
     <section className="container mx-auto px-5 py-24 relative">
@@ -200,8 +138,14 @@ const PrayersSection = () => {
                       </h3>
 
                       <div className="space-y-4 mt-6">
-                        <p className="text-sm font-arabic leading-loose text-primary text-justify  tracking-wider line-clamp-6">
-                          {dua.arabic}
+                        <p className="text-sm font-neirizi leading-loose text-primary text-justify  tracking-wider line-clamp-6">
+                          {dua.arabic?.map((item, index) => (
+                            <>
+                              <span key={index} className="text-primary">
+                                {item.arabic}
+                              </span>
+                            </>
+                          ))}
                         </p>
                       </div>
 
@@ -212,7 +156,9 @@ const PrayersSection = () => {
                         </button>
 
                         <button
-                          onClick={() => handleCopy(dua.arabic, index)}
+                          onClick={() =>
+                            handleCopy(dua.arabic.join("{"), index)
+                          }
                           className="p-2 rounded-full bg-primary/5 hover:bg-primary/10 transition-colors cursor-pointer"
                         >
                           {copiedId === index ? (
@@ -249,16 +195,38 @@ const PrayersSection = () => {
                   <div className="bg-card rounded-2xl p-6 h-full hover:shadow-lg transition">
                     <div
                       key={index}
-                      className="group bg-gradient-to-b from-background via-accent/5 to-background backdrop-blur-sm border border-primary/10 rounded-2xl p-8 relative transform transition-all hover:-translate-y-1 hover:shadow-xl hover:shadow-primary/5"
-                      onClick={() => setSelectedPrayer(surah)}
+                      className="group bg-gradient-to-b from-background via-accent/5 to-background backdrop-blur-sm border border-primary/10 rounded-2xl p-8 relative transform transition-all hover:-translate-y-1 "
+                      onClick={() =>
+                        setSelectedPrayer({
+                          ...surah,
+                          arabic: surah.arabic.map((ayah) => ({
+                            ...ayah,
+                            arabic: ayah.ayah,
+                          })),
+                        })
+                      }
                     >
                       <h3 className="text-lg text-center font-semibold">
                         {surah.title}
                       </h3>
 
                       <div className="space-y-4 mt-6">
-                        <p className="text-sm font-arabic leading-loose text-primary text-justify  tracking-wider line-clamp-6">
-                          {surah.arabic}
+                        <p className="text-sm text-justify md:text-base font-neirizi leading-loose text-primary/90 tracking-wider line-clamp-5">
+                          {surah.arabic.map((ayah, index) => (
+                            <span key={index} className=" relative group">
+                              {ayah.ayah}
+                              <span className="inline-flex items-center justify-center mx-1 group">
+                                <span className="relative flex items-center justify-center w-8 h-8">
+                                  <span className="absolute inset-0 bg-primary/5 rounded-full transform group-hover:scale-110 transition-transform" />
+
+                                  <CircleDashed className="w-7 h-7 text-primary/80 absolute top-0" />
+                                  <span className="text-xs font-bold text-primary/70 relative z-10">
+                                    {toPersianNumbers(ayah.number)}
+                                  </span>
+                                </span>
+                              </span>
+                            </span>
+                          ))}
                         </p>
                       </div>
 
@@ -269,7 +237,12 @@ const PrayersSection = () => {
                         </button>
 
                         <button
-                          onClick={() => handleCopy(surah.arabic, index)}
+                          onClick={() =>
+                            handleCopy(
+                              surah.arabic.map((ayah) => ayah.ayah).join(" "),
+                              index
+                            )
+                          }
                           className="p-2 rounded-full bg-primary/5 hover:bg-primary/10 transition-colors cursor-pointer"
                         >
                           {copiedId === index ? (
@@ -294,27 +267,40 @@ const PrayersSection = () => {
         open={!!selectedPrayer}
         onOpenChange={() => setSelectedPrayer(null)}
       >
-        <DialogContent className="max-w-[95vw] md:max-w-2xl p-4 md:p-6 max-h-[90vh] flex flex-col">
+        <DialogContent className="max-w-[95vw] md:max-w-2xl p-6 max-h-[90vh] flex flex-col">
           <DialogHeader>
             <DialogTitle className="text-xl md:text-2xl font-bold">
               {selectedPrayer?.title}
             </DialogTitle>
           </DialogHeader>
 
-          <div className="flex-1 overflow-y-auto my-4 md:my-6 pr-2">
+          <div className="flex-1 custom-scrollbar overflow-y-auto my-4 md:my-6 ">
             <div className="space-y-4">
-              <p className="text-xl md:text-2xl font-arabic leading-loose text-primary/90 text-right tracking-wider">
-                {selectedPrayer?.arabic}
+              <p className="text-base md:text-lg font-neirizi leading-10  text-primary/90 text-justify tracking-wider">
+                {selectedPrayer?.arabic.map((ayah, index) => (
+                  <span key={index} className=" relative group">
+                    {ayah.arabic}
+                    <span className="inline-flex items-center justify-center mx-1 group">
+                      <span className="relative flex items-center justify-center w-8 h-8">
+                        <span className="absolute inset-0 bg-primary/5 rounded-full transform group-hover:scale-110 transition-transform" />
+
+                        <CircleDashed className="w-7 h-7 text-primary/80 absolute top-0" />
+                        <span className="text-xs font-bold text-primary/70 relative z-10">
+                          {toPersianNumbers(ayah.number)}
+                        </span>
+                      </span>
+                    </span>
+                  </span>
+                ))}
               </p>
               <p className="text-base md:text-lg text-muted-foreground text-right">
                 {selectedPrayer?.translation}
               </p>
             </div>
 
-            <div className="flex-shrink-0 flex flex-col-reverse md:flex-row justify-between items-center gap-4 pt-4 border-t">
+            <div className=" sticky z-50 bottom-0 flex-shrink-0 flex flex-col-reverse md:flex-row justify-between items-center gap-4 pt-4 mt-4 bg-background border-t">
               <Button
                 variant={"ghost"}
-                className="w-full md:w-auto"
                 onClick={() => {
                   if (selectedPrayer && selectedPrayer.category === "surah") {
                     handleSurahPlay(selectedPrayer.id);
@@ -330,13 +316,20 @@ const PrayersSection = () => {
                 ) : (
                   <Play className="w-5 h-5" />
                 )}
-                پخش صوت
+
+                {selectedPrayer?.category === "dua" ? "پخش دعا" : "پخش سوره"}
               </Button>
-         
+
               <Button
-              variant={"ghost"}
-                onClick={() => handleCopy(selectedPrayer?.arabic || "", -1)}
-                
+                variant={"ghost"}
+                onClick={() =>
+                  handleCopy(
+                    selectedPrayer?.arabic
+                      ?.map((item) => item.arabic)
+                      .join(" ") || "",
+                    -1
+                  )
+                }
               >
                 {copiedId === -1 ? "کپی شد" : "کپی متن"}
                 {copiedId === -1 ? (
