@@ -20,6 +20,7 @@ function App() {
       
       <EssentialInfo />
       <CalenderSection />
+     
       <PrayersSection />
       <FaqSection />
       <SourcesSection />

@@ -1,5 +1,5 @@
-import { Play, Copy, Check } from "lucide-react";
-import { useState } from "react";
+import { Play, Pause, Copy, Check } from "lucide-react";
+import { useState, useRef, useEffect } from "react";
 import { Dialog, DialogContent, DialogHeader, DialogTitle } from "./ui/dialog";
 import {
   Carousel,
@@ -8,6 +8,7 @@ import {
   CarouselNext,
   CarouselPrevious,
 } from "@/components/ui/carousel";
+import { Button } from "./ui/button";
 
 const PrayersSection = () => {
   const [copiedId, setCopiedId] = useState<number | null>(null);
@@ -15,104 +16,157 @@ const PrayersSection = () => {
     null
   );
 
-  const duas = [
-    {
-      title: "دعای افطار",
-      arabic:
-        "اللَّهُمَّ لَكَ صُمْتُ وَ عَلَى رِزْقِكَ أَفْطَرْتُ وَ عَلَيْكَ تَوَكَّلْتُ، بِسْمِ اللهِ الرَّحْمنِ الرَّحِيمِ، يَا وَاسِعَ الْمَغْفِرَةِ اغْفِرْ لِي",
-      translation:
-        "خدایا برای تو روزه گرفتم و با روزی تو افطار کردم و بر تو توکل نمودم، به نام خداوند بخشنده مهربان، ای دارنده مغفرت گسترده مرا بیامرز",
-      category: "دعاهای روزانه",
-      audio: "/audio/dua-iftar.mp3",
-    },
+  const [playingDuaId, setPlayingDuaId] = useState<number | null>(null);
+  const [playingSurahId, setPlayingSurahId] = useState<number | null>(null);
+  const [duaAudioElements, setDuaAudioElements] = useState<{
+    [key: number]: HTMLAudioElement;
+  }>({});
+  const [surahAudioElements, setSurahAudioElements] = useState<{
+    [key: number]: HTMLAudioElement;
+  }>({});
 
-    {
-      title: "دعای افطار",
-      arabic:
-        "اللَّهُمَّ لَكَ صُمْتُ وَ عَلَى رِزْقِكَ أَفْطَرْتُ وَ عَلَيْكَ تَوَكَّلْتُ، بِسْمِ اللهِ الرَّحْمنِ الرَّحِيمِ، يَا وَاسِعَ الْمَغْفِرَةِ اغْفِرْ لِي",
-      translation:
-        "خدایا برای تو روزه گرفتم و با روزی تو افطار کردم و بر تو توکل نمودم، به نام خداوند بخشنده مهربان، ای دارنده مغفرت گسترده مرا بیامرز",
-      category: "دعاهای روزانه",
-      audio: "/audio/dua-iftar.mp3",
-    },
-    {
-      title: "دعای افطار",
-      arabic:
-        "اللَّهُمَّ لَكَ صُمْتُ وَ عَلَى رِزْقِكَ أَفْطَرْتُ وَ عَلَيْكَ تَوَكَّلْتُ، بِسْمِ اللهِ الرَّحْمنِ الرَّحِيمِ، يَا وَاسِعَ الْمَغْفِرَةِ اغْفِرْ لِي",
-      translation:
-        "خدایا برای تو روزه گرفتم و با روزی تو افطار کردم و بر تو توکل نمودم، به نام خداوند بخشنده مهربان، ای دارنده مغفرت گسترده مرا بیامرز",
-      category: "دعاهای روزانه",
-      audio: "/audio/dua-iftar.mp3",
-    },
-    {
-      title: "دعای افطار",
-      arabic:
-        "اللَّهُمَّ لَكَ صُمْتُ وَ عَلَى رِزْقِكَ أَفْطَرْتُ وَ عَلَيْكَ تَوَكَّلْتُ، بِسْمِ اللهِ الرَّحْمنِ الرَّحِيمِ، يَا وَاسِعَ الْمَغْفِرَةِ اغْفِرْ لِي",
-      translation:
-        "خدایا برای تو روزه گرفتم و با روزی تو افطار کردم و بر تو توکل نمودم، به نام خداوند بخشنده مهربان، ای دارنده مغفرت گسترده مرا بیامرز",
-      category: "دعاهای روزانه",
-      audio: "/audio/dua-iftar.mp3",
-    },
-    {
-      title: "دعای افطار",
-      arabic:
-        "اللَّهُمَّ لَكَ صُمْتُ وَ عَلَى رِزْقِكَ أَفْطَرْتُ وَ عَلَيْكَ تَوَكَّلْتُ، بِسْمِ اللهِ الرَّحْمنِ الرَّحِيمِ، يَا وَاسِعَ الْمَغْفِرَةِ اغْفِرْ لِي",
-      translation:
-        "خدایا برای تو روزه گرفتم و با روزی تو افطار کردم و بر تو توکل نمودم، به نام خداوند بخشنده مهربان، ای دارنده مغفرت گسترده مرا بیامرز",
-      category: "دعاهای روزانه",
-      audio: "/audio/dua-iftar.mp3",
-    },
-  ];
+  useEffect(() => {
+    // Initialize duas audio
+    const duaElements = duas.reduce((acc, dua, index) => {
+      const audio = new Audio(dua.audio);
+      audio.onended = () => setPlayingDuaId(null);
+      return { ...acc, [index]: audio };
+    }, {});
 
-  const surahs = [
-    {
-      title: "سوره قدر",
-      arabic:
-        "إِنَّا أَنْزَلْنَاهُ فِي لَيْلَةِ الْقَدْرِ وَمَا أَدْرَاكَ مَا لَيْلَةُ الْقَدْرِ لَيْلَةُ الْقَدْرِ خَيْرٌ مِنْ أَلْفِ شَهْرٍ تَنَزَّلُ الْمَلَائِكَةُ وَالرُّوحُ فِيهَا بِإِذْنِ رَبِّهِمْ مِنْ كُلِّ أَمْرٍ سَلَامٌ هِيَ حَتَّىٰ مَطْلَعِ الْفَجْرِ",
-      translation: "ما آن [قرآن] را در شب قدر نازل کردیم",
-      category: "سوره‌های قرآن",
-      audio: "/audio/surah-qadr.mp3",
-    },
+    // Initialize surahs audio
+    const surahElements = surahs.reduce((acc, surah, index) => {
+      const audio = new Audio(surah.audio);
+      audio.onended = () => setPlayingSurahId(null);
+      return { ...acc, [index]: audio };
+    }, {});
 
-    {
-      title: "سوره قدر",
-      arabic:
-        "إِنَّا أَنْزَلْنَاهُ فِي لَيْلَةِ الْقَدْرِ وَمَا أَدْرَاكَ مَا لَيْلَةُ الْقَدْرِ لَيْلَةُ الْقَدْرِ خَيْرٌ مِنْ أَلْفِ شَهْرٍ تَنَزَّلُ الْمَلَائِكَةُ وَالرُّوحُ فِيهَا بِإِذْنِ رَبِّهِمْ مِنْ كُلِّ أَمْرٍ سَلَامٌ هِيَ حَتَّىٰ مَطْلَعِ الْفَجْرِ",
-      translation: "ما آن [قرآن] را در شب قدر نازل کردیم",
-      category: "سوره‌های قرآن",
-      audio: "/audio/surah-qadr.mp3",
-    },
-    {
-      title: "سوره قدر",
-      arabic:
-        "إِنَّا أَنْزَلْنَاهُ فِي لَيْلَةِ الْقَدْرِ وَمَا أَدْرَاكَ مَا لَيْلَةُ الْقَدْرِ لَيْلَةُ الْقَدْرِ خَيْرٌ مِنْ أَلْفِ شَهْرٍ تَنَزَّلُ الْمَلَائِكَةُ وَالرُّوحُ فِيهَا بِإِذْنِ رَبِّهِمْ مِنْ كُلِّ أَمْرٍ سَلَامٌ هِيَ حَتَّىٰ مَطْلَعِ الْفَجْرِ",
-      translation: "ما آن [قرآن] را در شب قدر نازل کردیم",
-      category: "سوره‌های قرآن",
-      audio: "/audio/surah-qadr.mp3",
-    },
-    {
-      title: "سوره قدر",
-      arabic:
-        "إِنَّا أَنْزَلْنَاهُ فِي لَيْلَةِ الْقَدْرِ وَمَا أَدْرَاكَ مَا لَيْلَةُ الْقَدْرِ لَيْلَةُ الْقَدْرِ خَيْرٌ مِنْ أَلْفِ شَهْرٍ تَنَزَّلُ الْمَلَائِكَةُ وَالرُّوحُ فِيهَا بِإِذْنِ رَبِّهِمْ مِنْ كُلِّ أَمْرٍ سَلَامٌ هِيَ حَتَّىٰ مَطْلَعِ الْفَجْرِ",
-      translation: "ما آن [قرآن] را در شب قدر نازل کردیم",
-      category: "سوره‌های قرآن",
-      audio: "/audio/surah-qadr.mp3",
-    },
-    {
-      title: "سوره قدر",
-      arabic:
-        "إِنَّا أَنْزَلْنَاهُ فِي لَيْلَةِ الْقَدْرِ وَمَا أَدْرَاكَ مَا لَيْلَةُ الْقَدْرِ لَيْلَةُ الْقَدْرِ خَيْرٌ مِنْ أَلْفِ شَهْرٍ تَنَزَّلُ الْمَلَائِكَةُ وَالرُّوحُ فِيهَا بِإِذْنِ رَبِّهِمْ مِنْ كُلِّ أَمْرٍ سَلَامٌ هِيَ حَتَّىٰ مَطْلَعِ الْفَجْرِ",
-      translation: "ما آن [قرآن] را در شب قدر نازل کردیم",
-      category: "سوره‌های قرآن",
-      audio: "/audio/surah-qadr.mp3",
-    },
-  ];
+    setDuaAudioElements(duaElements);
+    setSurahAudioElements(surahElements);
+
+    return () => {
+      Object.values(duaElements).forEach((audio) => {
+        audio.pause();
+        audio.currentTime = 0;
+      });
+      Object.values(surahElements).forEach((audio) => {
+        audio.pause();
+        audio.currentTime = 0;
+      });
+    };
+  }, []);
+
+  const handleDuaPlay = (index: number) => {
+    const audio = duaAudioElements[index];
+
+    if (playingDuaId === index) {
+      audio.pause();
+      setPlayingDuaId(null);
+    } else {
+      if (playingDuaId !== null) {
+        duaAudioElements[playingDuaId].pause();
+        duaAudioElements[playingDuaId].currentTime = 0;
+      }
+      audio.play();
+      setPlayingDuaId(index);
+    }
+  };
+
+  // Handle surah audio
+  const handleSurahPlay = (index: number) => {
+    const audio = surahAudioElements[index];
+
+    if (playingSurahId === index) {
+      audio.pause();
+      setPlayingSurahId(null);
+    } else {
+      if (playingSurahId !== null) {
+        surahAudioElements[playingSurahId].pause();
+        surahAudioElements[playingSurahId].currentTime = 0;
+      }
+      audio.play();
+      setPlayingSurahId(index);
+    }
+  };
 
   const handleCopy = (text: string, id: number) => {
     navigator.clipboard.writeText(text);
     setCopiedId(id);
     setTimeout(() => setCopiedId(null), 2000);
   };
+
+  const duas = [
+    {
+      id: 0,
+      title: "دعای افطار",
+      arabic:
+        "اللَّهُمَّ لَكَ صُمْتُ وَ عَلَى رِزْقِكَ أَفْطَرْتُ وَ عَلَيْكَ تَوَكَّلْتُ، بِسْمِ اللهِ الرَّحْمنِ الرَّحِيمِ، يَا وَاسِعَ الْمَغْفِرَةِ اغْفِرْ لِي",
+      translation:
+        "خدایا برای تو روزه گرفتم و با روزی تو افطار کردم و بر تو توکل نمودم، به نام خداوند بخشنده مهربان، ای دارنده مغفرت گسترده مرا بیامرز",
+      category: "dua",
+      audio: "/audio/dua/dua-1.mp3",
+    },
+
+    {
+      id: 1,
+      title: "دعای افطار",
+      arabic:
+        "اللَّهُمَّ لَكَ صُمْتُ وَ عَلَى رِزْقِكَ أَفْطَرْتُ وَ عَلَيْكَ تَوَكَّلْتُ، بِسْمِ اللهِ الرَّحْمنِ الرَّحِيمِ، يَا وَاسِعَ الْمَغْفِرَةِ اغْفِرْ لِي",
+      translation:
+        "خدایا برای تو روزه گرفتم و با روزی تو افطار کردم و بر تو توکل نمودم، به نام خداوند بخشنده مهربان، ای دارنده مغفرت گسترده مرا بیامرز",
+      category: "dua",
+      audio: "/audio/dua/dua-2.mp3",
+    },
+    {
+      id: 2,
+      title: "دعای افطار",
+      arabic:
+        "اللَّهُمَّ لَكَ صُمْتُ وَ عَلَى رِزْقِكَ أَفْطَرْتُ وَ عَلَيْكَ تَوَكَّلْتُ، بِسْمِ اللهِ الرَّحْمنِ الرَّحِيمِ، يَا وَاسِعَ الْمَغْفِرَةِ اغْفِرْ لِي",
+      translation:
+        "خدایا برای تو روزه گرفتم و با روزی تو افطار کردم و بر تو توکل نمودم، به نام خداوند بخشنده مهربان، ای دارنده مغفرت گسترده مرا بیامرز",
+      category: "dua",
+      audio: "/audio/dua/dua-3.mp3",
+    },
+  ];
+
+  const surahs = [
+    {
+      id: 0,
+      title: "سوره قدر",
+      arabic:
+        "إِنَّا أَنْزَلْنَاهُ فِي لَيْلَةِ الْقَدْرِ وَمَا أَدْرَاكَ مَا لَيْلَةُ الْقَدْرِ لَيْلَةُ الْقَدْرِ خَيْرٌ مِنْ أَلْفِ شَهْرٍ تَنَزَّلُ الْمَلَائِكَةُ وَالرُّوحُ فِيهَا بِإِذْنِ رَبِّهِمْ مِنْ كُلِّ أَمْرٍ سَلَامٌ هِيَ حَتَّىٰ مَطْلَعِ الْفَجْرِ",
+      translation: "ما آن [قرآن] را در شب قدر نازل کردیم",
+      category: "surah",
+      audio: "/audio/surah/surah-1.mp3",
+    },
+
+    {
+      id: 1,
+      title: "سوره قدر",
+      arabic:
+        "إِنَّا أَنْزَلْنَاهُ فِي لَيْلَةِ الْقَدْرِ وَمَا أَدْرَاكَ مَا لَيْلَةُ الْقَدْرِ لَيْلَةُ الْقَدْرِ خَيْرٌ مِنْ أَلْفِ شَهْرٍ تَنَزَّلُ الْمَلَائِكَةُ وَالرُّوحُ فِيهَا بِإِذْنِ رَبِّهِمْ مِنْ كُلِّ أَمْرٍ سَلَامٌ هِيَ حَتَّىٰ مَطْلَعِ الْفَجْرِ",
+      translation: "ما آن [قرآن] را در شب قدر نازل کردیم",
+      category:"surah", 
+      audio: "/audio/surah/surah-2.mp3",
+    },
+    {
+      id: 2,
+      title: "سوره قدر",
+      arabic:
+        "إِنَّا أَنْزَلْنَاهُ فِي لَيْلَةِ الْقَدْرِ وَمَا أَدْرَاكَ مَا لَيْلَةُ الْقَدْرِ لَيْلَةُ الْقَدْرِ خَيْرٌ مِنْ أَلْفِ شَهْرٍ تَنَزَّلُ الْمَلَائِكَةُ وَالرُّوحُ فِيهَا بِإِذْنِ رَبِّهِمْ مِنْ كُلِّ أَمْرٍ سَلَامٌ هِيَ حَتَّىٰ مَطْلَعِ الْفَجْرِ",
+      translation: "ما آن [قرآن] را در شب قدر نازل کردیم",
+      category: "surah",
+      audio: "/audio/surah/surah-3.mp3",
+    },
+    {
+      id: 3,
+      title: "سوره قدر",
+      arabic:
+        "إِنَّا أَنْزَلْنَاهُ فِي لَيْلَةِ الْقَدْرِ وَمَا أَدْرَاكَ مَا لَيْلَةُ الْقَدْرِ لَيْلَةُ الْقَدْرِ خَيْرٌ مِنْ أَلْفِ شَهْرٍ تَنَزَّلُ الْمَلَائِكَةُ وَالرُّوحُ فِيهَا بِإِذْنِ رَبِّهِمْ مِنْ كُلِّ أَمْرٍ سَلَامٌ هِيَ حَتَّىٰ مَطْلَعِ الْفَجْرِ",
+      translation: "ما آن [قرآن] را در شب قدر نازل کردیم",
+      category: "surah",
+      audio: "/audio/surah/surah-4.mp3",
+    },
+  ];
 
   return (
     <section className="container mx-auto px-5 py-24 relative">
@@ -255,14 +309,31 @@ const PrayersSection = () => {
             </div>
 
             <div className="flex-shrink-0 flex flex-col-reverse md:flex-row justify-between items-center gap-4 pt-4 border-t">
-              <button className="w-full md:w-auto flex items-center justify-center gap-2 text-primary hover:text-primary/80 transition-colors">
-                <Play className="w-5 h-5" />
+              <Button
+                variant={"ghost"}
+                className="w-full md:w-auto"
+                onClick={() => {
+                  if (selectedPrayer?.category === "surah") {
+                    handleSurahPlay(selectedPrayer.id);
+                  } else {
+                    handleDuaPlay(selectedPrayer.id);
+                  }
+                }}
+              >
+                {(selectedPrayer?.category === "dua"
+                  ? playingDuaId
+                  : playingSurahId) === selectedPrayer?.id ? (
+                  <Pause className="w-5 h-5" />
+                ) : (
+                  <Play className="w-5 h-5" />
+                )}
                 پخش صوت
-              </button>
-
-              <button
+              </Button>
+         
+              <Button
+              variant={"ghost"}
                 onClick={() => handleCopy(selectedPrayer?.arabic || "", -1)}
-                className="w-full md:w-auto flex items-center justify-center gap-2 px-4 py-2 rounded-lg bg-primary/5 hover:bg-primary/10 transition-colors"
+                
               >
                 {copiedId === -1 ? "کپی شد" : "کپی متن"}
                 {copiedId === -1 ? (
@@ -270,7 +341,7 @@ const PrayersSection = () => {
                 ) : (
                   <Copy className="w-4 h-4" />
                 )}
-              </button>
+              </Button>
             </div>
           </div>
         </DialogContent>

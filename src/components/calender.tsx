@@ -14,8 +14,8 @@ const CalendarSection = () => {
   
     return (
       <section id="calendar" className="container mx-auto px-5 py-24 relative">
-        <div className="absolute inset-0 bg-gradient-to-b from-background via-primary/5 to-background" />
-        
+        {/* <div className="absolute inset-0 bg-gradient-to-b from-background via-primary/5 to-background" />
+         */}
         <div className="relative max-w-4xl mx-auto space-y-12">
           <div className="text-center space-y-4">
             <h2 className="text-xl md:text-4xl font-bold">تقویم ماه مبارک رمضان</h2>

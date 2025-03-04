@@ -88,14 +88,14 @@ const EssentialInfo = () => {
 
                 if (item.type === "ayah") {
                   return (
-                    <div key={itemIndex} className=" mr-6 relative bg-primary/5 rounded-lg border border-primary/10">
+                    <div key={itemIndex} className=" mr-2 md:mr-6 relative bg-primary/5 rounded-lg border border-primary/10">
                       <div className="absolute right-0 top-0 bottom-0 w-1 bg-gradient-to-b from-primary/40 to-primary/10 rounded-r-lg" />
                       <div className="pr-6 py-1">
-                        <p className="text-xl font-arabic leading-loose text-primary  mb-3">
+                        <p className="text-sm md:text-xl font-arabic leading-loose text-primary  mb-3">
                           ﴿ {item.arabic} ﴾
                         </p>
                         
-                        <p className="text-sm text-muted-foreground mb-2">
+                        <p className="text-xs md:text-sm text-muted-foreground mb-2">
                           {item.translation}
                         </p>
                 
@@ -110,15 +110,15 @@ const EssentialInfo = () => {
                 
                 if (item.type === "hadith") {
                   return (
-                    <div key={itemIndex} className="bg-accent/5 rounded-lg border border-accent/10 mr-6  relative">
+                    <div key={itemIndex} className="bg-accent/5 rounded-lg border border-accent/10 mr-2 md:mr-6  relative">
                       <div className="absolute right-0 top-0 bottom-0 w-1 bg-gradient-to-b from-accent/40 to-accent/10 rounded-r-lg" />
                       <div className="pr-6 py-1">
                         
-                        <p className="text-lg font-arabic leading-loose mb-2">
+                        <p className="text-sm md:text-lg font-arabic leading-loose mb-2">
                           " {item.arabic} "
                         </p>
                         
-                        <p className="text-sm text-muted-foreground">
+                        <p className="text-xs md:text-lg text-muted-foreground">
                           {item.translation}
                         </p>
                       </div>
