@@ -107,8 +107,6 @@ const PrayersSection = () => {
     setTimeout(() => setCopiedId(null), 2000);
   };
 
-  // "اللَّهُمَّ لَكَ صُمْتُ وَ عَلَى رِزْقِكَ أَفْطَرْتُ وَ عَلَيْكَ تَوَكَّلْتُ، بِسْمِ اللهِ الرَّحْمنِ الرَّحِيمِ، يَا وَاسِعَ الْمَغْفِرَةِ اغْفِرْ لِي",
-
   return (
     <section className="container mx-auto px-5 py-24 relative">
       <div className="relative max-w-4xl mx-auto space-y-12">
@@ -130,19 +128,19 @@ const PrayersSection = () => {
                   <div className="bg-card rounded-2xl p-6 h-full hover:shadow-lg transition">
                     <div
                       key={index}
-                      className="group bg-gradient-to-b from-background via-accent/5 to-background backdrop-blur-sm border border-primary/10 rounded-2xl p-8 relative transform transition-all hover:-translate-y-1 hover:shadow-xl hover:shadow-primary/5"
+                      className=" flex flex-col justify-between group h-full bg-gradient-to-b from-background via-accent/5 to-background backdrop-blur-sm border border-primary/10 rounded-2xl p-8 relative transform transition-all hover:-translate-y-1 hover:shadow-xl hover:shadow-primary/5"
                       onClick={() => setSelectedPrayer(dua)}
                     >
-                      <h3 className="text-lg text-center font-semibold">
+                      <h3 className="text-lg  text-center font-semibold">
                         {dua.title}
                       </h3>
 
                       <div className="space-y-4 mt-6">
-                        <p className="text-sm font-neirizi leading-loose text-primary text-justify  tracking-wider line-clamp-6">
+                        <p className="text-sm font-neirizi leading-loose text-primary text-justify  tracking-wider line-clamp-5">
                           {dua.arabic?.map((item, index) => (
                             <>
                               <span key={index} className="text-primary">
-                                {item.arabic}
+                                {item.ayah}
                               </span>
                             </>
                           ))}
@@ -195,7 +193,7 @@ const PrayersSection = () => {
                   <div className="bg-card rounded-2xl p-6 h-full hover:shadow-lg transition">
                     <div
                       key={index}
-                      className="group bg-gradient-to-b from-background via-accent/5 to-background backdrop-blur-sm border border-primary/10 rounded-2xl p-8 relative transform transition-all hover:-translate-y-1 "
+                      className="group h-full flex flex-col justify-between bg-gradient-to-b from-background via-accent/5 to-background backdrop-blur-sm border border-primary/10 rounded-2xl p-8 relative transform transition-all hover:-translate-y-1 "
                       onClick={() =>
                         setSelectedPrayer({
                           ...surah,
@@ -269,32 +267,46 @@ const PrayersSection = () => {
       >
         <DialogContent className="max-w-[95vw] md:max-w-2xl p-6 max-h-[90vh] flex flex-col">
           <DialogHeader>
-            <DialogTitle className="text-xl md:text-2xl font-bold">
+            <DialogTitle className="text-xl text-center md:text-2xl font-bold">
               {selectedPrayer?.title}
+              {selectedPrayer && selectedPrayer.category === 'surah' &&
+                <div className="flex flex-col items-center mt-8 mb-4 text-primary/90">
+                <span className="text-xl md:text-2xl font-arabic mb-2">
+                  بِسْمِ اللَّهِ الرَّحْمَنِ الرَّحِيمِ
+                </span>
+                <div className="h-px w-48 bg-gradient-to-r from-transparent via-primary/20 to-transparent" />
+              </div>}
             </DialogTitle>
           </DialogHeader>
 
-          <div className="flex-1 custom-scrollbar overflow-y-auto my-4 md:my-6 ">
+          <div className="flex-1  custom-scrollbar overflow-y-auto my-4 md:my-6 ">
             <div className="space-y-4">
-              <p className="text-base md:text-lg font-neirizi leading-10  text-primary/90 text-justify tracking-wider">
-                {selectedPrayer?.arabic.map((ayah, index) => (
-                  <span key={index} className=" relative group">
-                    {ayah.arabic}
-                    <span className="inline-flex items-center justify-center mx-1 group">
-                      <span className="relative flex items-center justify-center w-8 h-8">
-                        <span className="absolute inset-0 bg-primary/5 rounded-full transform group-hover:scale-110 transition-transform" />
-
-                        <CircleDashed className="w-7 h-7 text-primary/80 absolute top-0" />
-                        <span className="text-xs font-bold text-primary/70 relative z-10">
-                          {toPersianNumbers(ayah.number)}
-                        </span>
-                      </span>
-                    </span>
+              <p className="text-base flex flex-col gap-5  md:text-lg font-neirizi leading-10  text-primary/90 text-justify tracking-wider">
+                {selectedPrayer?.arabic.map((item, index) => (
+                  <span
+                    key={index}
+                    className="relative flex flex-col  sm:flex-row items-center gap-1 group"
+                  >
+                    <p className="text-xl flex-1  font-arabic leading-loose text-primary">
+                      {item.ayah}
+                      {selectedPrayer &&
+                        selectedPrayer.category === "surah" && (
+                          <span className="inline-flex items-center justify-center mx-1 group">
+                            <span className="relative flex items-center justify-center w-8 h-8">
+                              <span className="absolute inset-0 bg-primary/5 rounded-full transform group-hover:scale-110 transition-transform" />
+                              <CircleDashed className="w-7 h-7 text-primary/80 absolute top-0" />
+                              <span className="text-xs font-bold text-primary/70 relative z-10">
+                                {toPersianNumbers(item.number)}
+                              </span>
+                            </span>
+                          </span>
+                        )}
+                    </p>
+                    <p className="text-sm leading-7 flex-1 text-muted-foreground mr-4 mb-4">
+                      {item.translation}
+                    </p>
                   </span>
                 ))}
-              </p>
-              <p className="text-base md:text-lg text-muted-foreground text-right">
-                {selectedPrayer?.translation}
               </p>
             </div>
 
@@ -325,7 +337,7 @@ const PrayersSection = () => {
                 onClick={() =>
                   handleCopy(
                     selectedPrayer?.arabic
-                      ?.map((item) => item.arabic)
+                      ?.map((item) => item.ayah)
                       .join(" ") || "",
                     -1
                   )
