@@ -89,12 +89,7 @@ const SourcesSection = () => {
           ))}
         </div>
 
-        <div className="mt-12 p-4 bg-primary/5 rounded-lg">
-          <p className="text-sm relative text-center text-muted-foreground">
-            برای مشاهده منبع هر مطلب، به شماره‌های مرجع در متن [۱]، [۲] و...
-            مراجعه کنید
-          </p>
-        </div>
+       
       </div>
     </section>
   );

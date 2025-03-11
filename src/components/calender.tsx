@@ -40,10 +40,9 @@ const CalendarSection = () => {
             </iframe>
           </div>
 
-          {/* Countdown */}
           <div className="bg-card rounded-2xl p-6 space-y-6">
             <h3 className="text-lg md:text-xl font-semibold text-center">
-              تا افطار امروز
+            تقویم ماه رمضان
             </h3>
             
               <iframe

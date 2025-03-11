@@ -5,7 +5,7 @@ const Footer = () => {
         <p >
           طراحی و توسعه توسط{" "}
           <a
-            href="https://github.com/MahmoodHashem"
+            href="https://www.linkedin.com/in/mahmood-hashemi-55172a276"
             target="_blank"
             className="text-primary hover:underline"
           >
