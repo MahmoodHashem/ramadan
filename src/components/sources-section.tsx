@@ -5,23 +5,13 @@ const SourcesSection = () => {
       references: [
         {
           id: 1,
-          text: "صحیح بخاری، محمد بن اسماعیل بخاری، جلد ۳، ص ۱۲۸-۱۳۰، حدیث ۱۹۰۳",
+          text: "صحیح بخاری، محمد بن اسماعیل بخاری، جلد ۱، کتاب ۲، حدیث ۳۷",
           usedIn: ["hadith-fasting", "hadith-intention"],
         },
         {
-          id: 2,
-          text: "صحیح مسلم، مسلم بن حجاج، باب الصیام، حدیث ۱۱۵۱",
-          usedIn: ["hadith-rewards"],
-        },
-      ],
-    },
-    {
-      category: "تفاسیر قرآن",
-      references: [
-        {
           id: 3,
-          text: "تفسیر نمونه، آیت‌الله مکارم شیرازی، جلد ۲، ص ۲۴۵-۲۴۷",
-          usedIn: ["surah-baqarah-183"],
+          text:"صحیح مسلم، مسلم بن حجاج نیشابوری، جلد ۲، کتاب ۱۳، حدیث شماره ۱۰۷۹",
+          usedIn: ["hadith-rewards"],
         },
       ],
     },
@@ -29,17 +19,17 @@ const SourcesSection = () => {
       category: "منابع وب",
       references: [
         {
-          id: 8,
-          text: "IslamWeb - Ramadan Fasting Rules",
-          url: "https://www.islamweb.net/en/article/135339/",
-          accessDate: "۱۵ اسفند ۱۴۰۲",
+          id: 2,
+          text: "پارس قرآن - ترجمه فارسی قرآن کریم - سوره بقره - آیه ۱۸۵",
+          url: "http://www.parsquran.com/data/show.php?sura=2&ayat=185&user=far&lang=far",
+          accessDate: "۱۵ اسفند ۱۴۰۳",
         },
         {
-          id: 9,
-          text: "Islamic Finder - Prayer Times API",
-          url: "https://www.islamicfinder.org/",
-          accessDate: "۱۰ اسفند ۱۴۰۲",
-        },
+          id: 4,
+          text: "پارس قرآن - ترجمه فارسی قرآن کریم - سوره قدر آیه ۴",
+          url: "http://www.parsquran.com/data/show.php?sura=97&ayat=1&user=far&lang=far&tran=1",
+          accessDate: "۱۵ اسفند ۱۴۰۳",
+                },
       ],
     },
   ];
@@ -72,12 +62,14 @@ const SourcesSection = () => {
                     <span>
                       {"url" in ref ? (
                         <a
+                         id={`${ref.id}`}
                           href={ref.url}
                           target="_blank"
                           rel="noopener noreferrer"
                           className="text-primary hover:underline mr-2"
                         >
                           {ref.text}
+                          
                         </a>
                       ) : (
                         <span className="text-muted-foreground">

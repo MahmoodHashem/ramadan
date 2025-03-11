@@ -40,8 +40,7 @@ const Hero = () => {
           <Button
             onClick={scrollToInfo}
           variant="outline" size="lg" className="text-sm sm:text-lg">
-            اطلاعات بیشتر
-          </Button>
+سوالات متداول رمضان          </Button>
         </div>
       </div>
 

@@ -1,54 +1,25 @@
-# React + TypeScript + Vite
+*"خداوند هر شب دست رحمت خود را دراز می‌کند تا کسی که روز را در گناه سپری کرده، برگردد… و هر روز دست رحمتش را باز می‌کند تا کسی که شب را در نافرمانی گذرانده، توبه کند. تا وقتی که آفتاب از مغرب طلوع کند."*
+*(صحیح مسلم، حدیث ۲۷۵۹)*
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+**اگر همین حالا بر نگردیم ، پس کی؟**
+اگر **در این ماه رحمت نه ، پس چی وقت؟**
 
-Currently, two official plugins are available:
+رمضان فرصتیست
+فرصتی برای اینکه خود را **از زنجیر اعمال که ما را از الله متعال دور ساخته، رها کنیم** .
+اعمال که  **دل‌های ما را تاریک کرده** ،
+عمر ما را ضایع ساخته،
+و جز **حسرت و ندامت** چیزی برای ما نگذاشته است.
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react/README.md) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+در این ماه مبارک، وقت آن است که  **زبان خود را از گفتار بیهوده،**
+چشمان خود را از نگاه‌های ناپاک،
+گوش‌های خود را از شنیدن سخنان بی‌ارزش باز داریم
 
-## Expanding the ESLint configuration
 
-If you are developing a production application, we recommend updating the configuration to enable type-aware lint rules:
+رمضان یک گذرگاه زودگذر نیست که فقط روزه بگیریم و بگذرد،
+بلکه  **یک نقطه‌ی آغاز است**
+یک فرصت برای اینکه  **سبک‌تر شویم، آرام‌تر شویم و بنده‌ای شویم که الله  از ما راضی باشد** .
 
-```js
-export default tseslint.config({
-  extends: [
-    // Remove ...tseslint.configs.recommended and replace with this
-    ...tseslint.configs.recommendedTypeChecked,
-    // Alternatively, use this for stricter rules
-    ...tseslint.configs.strictTypeChecked,
-    // Optionally, add this for stylistic rules
-    ...tseslint.configs.stylisticTypeChecked,
-  ],
-  languageOptions: {
-    // other options...
-    parserOptions: {
-      project: ['./tsconfig.node.json', './tsconfig.app.json'],
-      tsconfigRootDir: import.meta.dirname,
-    },
-  },
-})
-```
-
-You can also install [eslint-plugin-react-x](https://github.com/Rel1cx/eslint-react/tree/main/packages/plugins/eslint-plugin-react-x) and [eslint-plugin-react-dom](https://github.com/Rel1cx/eslint-react/tree/main/packages/plugins/eslint-plugin-react-dom) for React-specific lint rules:
-
-```js
-// eslint.config.js
-import reactX from 'eslint-plugin-react-x'
-import reactDom from 'eslint-plugin-react-dom'
-
-export default tseslint.config({
-  plugins: {
-    // Add the react-x and react-dom plugins
-    'react-x': reactX,
-    'react-dom': reactDom,
-  },
-  rules: {
-    // other rules...
-    // Enable its recommended typescript rules
-    ...reactX.configs['recommended-typescript'].rules,
-    ...reactDom.configs.recommended.rules,
-  },
-})
-```
+**این رمضان، فرصتی است که نباید از دست داد. بیایید از همین لحظه شروع کنیم.**
+هر روز که از این ماه می‌گذرد، یک گام به خداوند نزدیک‌تر می‌شویم.
+در این ماه، هر توبه‌ای پذیرفته است، هر دعايي مستجاب است. پس چرا نگذاریم رمضان تغییرات بزرگی در زندگی‌مان ایجاد کند؟
+خداوند با ماست و دست رحمتش همیشه باز است، فقط کافیست که با نیت پاک قدم برداریم.
